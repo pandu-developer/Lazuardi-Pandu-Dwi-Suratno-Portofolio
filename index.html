@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Apply theme as early as possible (default: DARK) + mark JS active -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      } catch (e) { document.documentElement.setAttribute("data-theme", "dark"); }
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+
+  <!-- ===================== SEO / META ===================== -->
+  <title>Lazuardi Pandu — Full Stack Developer</title>
+  <meta name="description" content="Lazuardi Pandu — Full Stack Developer. I build clean, functional web applications from front-end to back-end." />
+  <meta name="author" content="Lazuardi Pandu" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="canonical" href="https://lazuardipandu.example.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lazuardi Pandu — Full Stack Developer" />
+  <meta property="og:description" content="I build clean, functional web applications from front-end to back-end." />
+  <meta property="og:image" content="assets/img/og-image.svg" />
+  <meta property="og:url" content="https://lazuardipandu.example.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lazuardi Pandu — Full Stack Developer" />
+  <meta name="twitter:description" content="I build clean, functional web applications from front-end to back-end." />
+  <meta name="twitter:image" content="assets/img/og-image.svg" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { ink: "#0a0a0a", paper: "#ffffff", muted: "#f2f2f2", accent: "#22c55e", secondary: "#6b6b6b" },
+        fontFamily: { display: ["Space Grotesk", "Inter", "sans-serif"], body: ["Inter", "system-ui", "sans-serif"] }
+      } }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org", "@type": "Person", "name": "Lazuardi Pandu Dwi Suratno",
+    "jobTitle": "Full Stack Developer", "url": "https://lazuardipandu.example.com/",
+    "email": "mailto:pandupro6789@gmail.com",
+    "sameAs": ["https://dribbble.com/lazuardipandu","https://www.instagram.com/lazuardipandu","https://www.linkedin.com/in/lazuardipandu","https://www.behance.net/lazuardipandu"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#project">Skip to content</a>
+
+  <div class="shell">
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Lazuardi Pandu — home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          Lazuardi Pandu
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a class="nav-link" href="#top" data-section="top">Home</a></li>
+          <li><a class="nav-link" href="#about" data-section="about">About</a></li>
+          <li><a class="nav-link" href="#project" data-section="project">Project</a></li>
+          <li><a class="nav-link" href="#contact" data-section="contact">Contact</a></li>
+          <li class="nav-cta-mobile"><a class="btn btn-solid" href="#contact" style="width:100%">Let's Talk</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
+          </button>
+          <a class="btn btn-solid nav-cta desktop-only" href="#contact">Let's Talk</a>
+          <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
+            <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================== HERO (text left, photo right) ===================== -->
+    <header class="card-surface section hero" id="top" style="margin-top:16px">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> Full Stack Developer</p>
+          <h1 class="hero-name">
+            <span class="line fill">Lazuardi</span>
+            <span class="line outline">Pandu</span>
+          </h1>
+          <p class="hero-desc">Hi! I'm a Full Stack Developer who builds clean, functional web applications — turning ideas into products that work from front-end to back-end.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#contact">
+              Let's Collaborate
+              <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+            <a class="btn btn-outline" href="assets/docs/CV-Lazuardi-Pandu.pdf" download>
+              Download CV
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            </a>
+            <a class="btn btn-outline" href="#project">View Projects</a>
+          </div>
+          <ul class="socials">
+            <li><a class="social-pill" href="https://dribbble.com/lazuardipandu" target="_blank" rel="noopener" aria-label="Dribbble (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M5 8c4 3 9 4 14 3M8 3.5c4 4.5 6 9.5 6.5 16.5M20 13c-6-2-11 .5-13 5"/></svg>
+              Dribbble</a></li>
+            <li><a class="social-pill" href="https://www.instagram.com/lazuardipandu" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+              Instagram</a></li>
+            <li><a class="social-pill" href="https://www.linkedin.com/in/lazuardipandu" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 10v7M7 7.2v.01M11 17v-4a2 2 0 0 1 4 0v4" stroke-linecap="round"/></svg>
+              LinkedIn</a></li>
+            <li><a class="social-pill" href="https://www.behance.net/lazuardipandu" target="_blank" rel="noopener" aria-label="Behance (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 7h4.5a2.2 2.2 0 0 1 0 4.5H3zM3 11.5h5a2.4 2.4 0 0 1 0 5H3zM14.5 8.5H20M21 14.2a3 3 0 1 0-6 0 3 3 0 0 0 6 0zM15 14.2h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Behance</a></li>
+          </ul>
+        </div>
+
+        <div class="hero-photo reveal">
+          <!-- Replace profile.svg with your photo (grayscale, PNG/JPG, 4:5 ratio) -->
+          <img src="assets/img/profile.svg" alt="Photo of Lazuardi Pandu" width="440" height="550" />
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== MARQUEE (tech) ===================== -->
+    <div class="marquee card-surface" style="margin-top:16px; border-radius:var(--radius-xl)" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">HTML</span><span class="marquee-item">CSS</span><span class="marquee-item">JavaScript</span><span class="marquee-item">Tailwind</span><span class="marquee-item">PHP</span><span class="marquee-item">MySQL</span><span class="marquee-item">Figma</span><span class="marquee-item">Git</span>
+        <span class="marquee-item">HTML</span><span class="marquee-item">CSS</span><span class="marquee-item">JavaScript</span><span class="marquee-item">Tailwind</span><span class="marquee-item">PHP</span><span class="marquee-item">MySQL</span><span class="marquee-item">Figma</span><span class="marquee-item">Git</span>
+      </div>
+    </div>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="card-surface section" id="about" style="margin-top:16px" aria-labelledby="about-title">
+      <div class="section-head reveal">
+        <p class="section-label"><span class="dash"></span> 01 — About</p>
+        <h2 class="section-title" id="about-title">About me.</h2>
+      </div>
+      <div class="about-grid">
+        <p class="about-lead reveal">A developer focused on detail, clarity, and building things that actually work.</p>
+        <div class="about-body reveal" data-delay="1">
+          <p>I'm Lazuardi Pandu Dwi Suratno, a Full Stack Developer and vocational high‑school student at SMK Telkom Purwokerto (Software &amp; Game Development / PPLG). I enjoy building web applications end to end — from crafting the interface to wiring up the back‑end.</p>
+          <p>I'm open to collaboration, freelance projects, and internship (PKL) opportunities.</p>
+          <h3 class="about-subtitle">Skills</h3>
+          <ul class="skill-chips">
+            <li class="skill-chip">HTML</li>
+            <li class="skill-chip">CSS</li>
+            <li class="skill-chip">JavaScript</li>
+            <li class="skill-chip">Tailwind CSS</li>
+            <li class="skill-chip">PHP</li>
+            <li class="skill-chip">MySQL</li>
+            <li class="skill-chip">Figma</li>
+            <li class="skill-chip">Git</li>
+            <li class="skill-chip">Unity (C#)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Expandable: education + more -->
+      <div class="about-more" id="aboutMore" aria-hidden="true">
+        <div class="about-more-inner">
+          <h3 class="about-subtitle">Education</h3>
+          <div class="edu-list">
+            <div class="edu-item"><span class="edu-year">2024 — Present</span><div><p class="edu-school">SMK Telkom Purwokerto</p><p class="edu-note">Vocational High School — Software &amp; Game Development (PPLG)</p></div></div>
+            <div class="edu-item"><span class="edu-year">2021 — 2024</span><div><p class="edu-school">SMP Telkom Purwokerto</p><p class="edu-note">Junior High School</p></div></div>
+            <div class="edu-item"><span class="edu-year">2019 — 2021</span><div><p class="edu-school">SD Negeri 1 Purwokerto Lor</p><p class="edu-note">Elementary School</p></div></div>
+            <div class="edu-item"><span class="edu-year">2015 — 2019</span><div><p class="edu-school">SD Negeri 1 Purwojati</p><p class="edu-note">Elementary School</p></div></div>
+          </div>
+          <p class="about-soft">Beyond tech: strong critical thinking and a high drive to keep learning.</p>
+        </div>
+      </div>
+      <button class="btn btn-outline about-toggle reveal" id="aboutToggle" type="button" aria-expanded="false" aria-controls="aboutMore">
+        <span class="about-toggle-label">See more</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </section>
+
+    <!-- ===================== PROJECT ===================== -->
+    <section class="card-surface section" id="project" style="margin-top:16px" aria-labelledby="project-title">
+      <div class="section-head reveal">
+        <p class="section-label"><span class="dash"></span> 02 — Selected Project</p>
+        <h2 class="section-title" id="project-title">Projects I'm proud of.</h2>
+        <p class="section-intro">Click a project to open the case study: problem, process, solution, and result.</p>
+      </div>
+      <div class="work-filters reveal" role="group" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="Mobile App" aria-pressed="false">Mobile App</button>
+        <button class="filter-btn" data-filter="Web Design" aria-pressed="false">Web Design</button>
+        <button class="filter-btn" data-filter="Branding" aria-pressed="false">Branding</button>
+      </div>
+      <div class="work-grid">
+        <button class="project-card reveal" data-id="fintar" data-category="Mobile App" aria-label="Open Fintar case study">
+          <div class="project-thumb">
+            <svg class="thumb-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fintar preview">
+              <defs><linearGradient id="g-fintar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3a3a"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#g-fintar)"/><rect x="150" y="55" width="100" height="200" rx="18" fill="#fff" opacity="0.95"/><rect x="165" y="80" width="70" height="10" rx="5" fill="#0a0a0a" opacity="0.2"/><rect x="165" y="150" width="16" height="60" rx="4" fill="#0a0a0a"/><rect x="188" y="130" width="16" height="80" rx="4" fill="#0a0a0a" opacity="0.6"/><rect x="211" y="165" width="16" height="45" rx="4" fill="#0a0a0a" opacity="0.35"/>
+            </svg>
+            <span class="thumb-badge">Mobile App</span>
+            <span class="thumb-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+          </div>
+          <div class="project-meta"><h3 class="project-title">Fintar — Finance App</h3><span class="project-cat">2025</span></div>
+        </button>
+        <button class="project-card reveal" data-delay="1" data-id="bloom" data-category="Web Design" aria-label="Open Bloom case study">
+          <div class="project-thumb">
+            <svg class="thumb-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bloom preview">
+              <defs><linearGradient id="g-bloom" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#d8d8d8"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#g-bloom)"/><rect x="0" y="0" width="400" height="40" fill="#0a0a0a" opacity="0.85"/><rect x="40" y="70" width="90" height="150" rx="12" fill="#fff"/><rect x="155" y="70" width="90" height="150" rx="12" fill="#fff"/><rect x="270" y="70" width="90" height="150" rx="12" fill="#0a0a0a"/><rect x="55" y="195" width="50" height="10" rx="5" fill="#0a0a0a" opacity="0.3"/><rect x="170" y="195" width="50" height="10" rx="5" fill="#0a0a0a" opacity="0.3"/>
+            </svg>
+            <span class="thumb-badge">Web Design</span>
+            <span class="thumb-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+          </div>
+          <div class="project-meta"><h3 class="project-title">Bloom — E‑commerce</h3><span class="project-cat">2025</span></div>
+        </button>
+        <button class="project-card reveal" data-delay="2" data-id="nusa" data-category="Branding" aria-label="Open Nusa Coffee case study">
+          <div class="project-thumb">
+            <svg class="thumb-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Nusa Coffee preview">
+              <defs><linearGradient id="g-nusa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7e7e7"/><stop offset="1" stop-color="#bdbdbd"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#g-nusa)"/><circle cx="200" cy="150" r="78" fill="#0a0a0a"/><text x="200" y="178" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="72" font-weight="700" fill="#fff">N</text><circle cx="330" cy="60" r="14" fill="#0a0a0a" opacity="0.5"/><rect x="40" y="240" width="60" height="14" rx="7" fill="#0a0a0a" opacity="0.4"/>
+            </svg>
+            <span class="thumb-badge">Branding</span>
+            <span class="thumb-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+          </div>
+          <div class="project-meta"><h3 class="project-title">Nusa Coffee — Brand</h3><span class="project-cat">2024</span></div>
+        </button>
+        <button class="project-card reveal" data-id="medika" data-category="Mobile App" aria-label="Open Medika case study">
+          <div class="project-thumb">
+            <svg class="thumb-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Medika preview">
+              <defs><linearGradient id="g-medika" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efefef"/><stop offset="1" stop-color="#cfcfcf"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#g-medika)"/><rect x="150" y="45" width="100" height="210" rx="18" fill="#0a0a0a"/><circle cx="200" cy="110" r="26" fill="#fff"/><rect x="192" y="98" width="16" height="4" rx="2" fill="#0a0a0a"/><rect x="198" y="92" width="4" height="16" rx="2" fill="#0a0a0a"/><rect x="168" y="155" width="64" height="10" rx="5" fill="#fff" opacity="0.9"/><rect x="168" y="175" width="64" height="10" rx="5" fill="#fff" opacity="0.5"/><rect x="168" y="195" width="40" height="10" rx="5" fill="#fff" opacity="0.5"/>
+            </svg>
+            <span class="thumb-badge">Mobile App</span>
+            <span class="thumb-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+          </div>
+          <div class="project-meta"><h3 class="project-title">Medika — Health Booking</h3><span class="project-cat">2025</span></div>
+        </button>
+        <button class="project-card reveal" data-delay="1" data-id="estate" data-category="Web Design" aria-label="Open Estate+ case study">
+          <div class="project-thumb">
+            <svg class="thumb-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Estate+ preview">
+              <defs><linearGradient id="g-estate" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f2f2f"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#g-estate)"/><rect x="36" y="40" width="150" height="90" rx="12" fill="#fff" opacity="0.1"/><circle cx="300" cy="90" r="45" fill="none" stroke="#fff" stroke-width="16" opacity="0.85"/><circle cx="300" cy="90" r="45" fill="none" stroke="#fff" stroke-width="16" stroke-dasharray="70 200" opacity="0.35"/><rect x="40" y="180" width="20" height="70" rx="4" fill="#fff" opacity="0.9"/><rect x="70" y="160" width="20" height="90" rx="4" fill="#fff" opacity="0.6"/><rect x="100" y="200" width="20" height="50" rx="4" fill="#fff" opacity="0.4"/><rect x="130" y="140" width="20" height="110" rx="4" fill="#fff"/><rect x="160" y="185" width="20" height="65" rx="4" fill="#fff" opacity="0.5"/>
+            </svg>
+            <span class="thumb-badge">Web Design</span>
+            <span class="thumb-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+          </div>
+          <div class="project-meta"><h3 class="project-title">Estate+ — Dashboard</h3><span class="project-cat">2024</span></div>
+        </button>
+        <button class="project-card reveal" data-delay="2" data-id="lumen" data-category="Web Design" aria-label="Open Lumen case study">
+          <div class="project-thumb">
+            <svg class="thumb-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Lumen preview">
+              <defs><linearGradient id="g-lumen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#dcdcdc"/></linearGradient></defs>
+              <rect width="400" height="300" fill="url(#g-lumen)"/><text x="40" y="150" font-family="'Space Grotesk',sans-serif" font-size="90" font-weight="700" fill="#0a0a0a">Aa</text><rect x="40" y="180" width="150" height="12" rx="6" fill="#0a0a0a" opacity="0.25"/><rect x="40" y="204" width="110" height="12" rx="6" fill="#0a0a0a" opacity="0.25"/><rect x="40" y="235" width="120" height="34" rx="17" fill="#0a0a0a"/><circle cx="320" cy="90" r="55" fill="none" stroke="#0a0a0a" stroke-width="10" opacity="0.15"/>
+            </svg>
+            <span class="thumb-badge">Web Design</span>
+            <span class="thumb-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+          </div>
+          <div class="project-meta"><h3 class="project-title">Lumen — SaaS Landing</h3><span class="project-cat">2025</span></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== CERTIFICATES ===================== -->
+    <section class="card-surface section" id="certificates" style="margin-top:16px" aria-labelledby="cert-title">
+      <div class="section-head reveal">
+        <p class="section-label"><span class="dash"></span> 03 — Certifications</p>
+        <h2 class="section-title" id="cert-title">Certificates &amp; achievements.</h2>
+        <p class="section-intro">Click a certificate to view it full‑size. And there's something I'm cooking up 👀</p>
+      </div>
+
+      <div class="cert-grid">
+        <!-- TechSprint -->
+        <button class="cert-card reveal" data-cert="assets/img/certs/cert-techsprint.jpg" data-title="TechSprint Innovation Cup 2026 — Web Development (Codelab Indonesia)" data-pdf="assets/docs/sertifikat-techsprint.pdf" aria-label="View TechSprint Innovation Cup 2026 certificate">
+          <span class="cert-thumb">
+            <img src="assets/img/certs/cert-techsprint.jpg" alt="TechSprint Innovation Cup 2026 — Web Development certificate" loading="lazy" width="1700" height="1202" />
+            <span class="cert-view" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8.5v5M8.5 11h5"/></svg> View certificate</span>
+          </span>
+          <span class="cert-info">
+            <span class="cert-issuer">Codelab Indonesia</span>
+            <span class="cert-name">TechSprint Innovation Cup 2026</span>
+            <span class="cert-meta">Web Development · 2026</span>
+          </span>
+        </button>
+
+        <!-- Azure AI Fundamentals -->
+        <button class="cert-card reveal" data-delay="1" data-cert="assets/img/certs/cert-azure.jpg" data-title="Microsoft Azure AI Fundamentals (AI-900) — Certificate of Completion" data-pdf="assets/docs/sertifikat-azure-ai900.pdf" aria-label="View Azure AI Fundamentals AI-900 certificate">
+          <span class="cert-thumb">
+            <img src="assets/img/certs/cert-azure.jpg" alt="Preparation Course for Azure AI Fundamentals (AI-900) certificate" loading="lazy" width="1700" height="1314" />
+            <span class="cert-view" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8.5v5M8.5 11h5"/></svg> View certificate</span>
+          </span>
+          <span class="cert-info">
+            <span class="cert-issuer">Microsoft · elevAIte</span>
+            <span class="cert-name">Azure AI Fundamentals (AI‑900)</span>
+            <span class="cert-meta">Completion · Jul 2025</span>
+          </span>
+        </button>
+
+        <!-- Telkom DigiUp -->
+        <button class="cert-card reveal" data-delay="2" data-cert="assets/img/certs/cert-digiup.jpg" data-title="Telkom DigiUp 2025 — Digital Marketing (Certified)" data-pdf="assets/docs/sertifikat-digiup.pdf" aria-label="View Telkom DigiUp 2025 certificate">
+          <span class="cert-thumb">
+            <img src="assets/img/certs/cert-digiup.jpg" alt="Telkom DigiUp 2025 — Digital Marketing certificate" loading="lazy" width="1700" height="1203" />
+            <span class="cert-view" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8.5v5M8.5 11h5"/></svg> View certificate</span>
+          </span>
+          <span class="cert-info">
+            <span class="cert-issuer">Telkom DigiUp 2025</span>
+            <span class="cert-name">Digital Marketing</span>
+            <span class="cert-meta">Certified · Dec 2025 · PT TPCC</span>
+          </span>
+        </button>
+
+        <!-- AI Ignition -->
+        <button class="cert-card reveal" data-cert="assets/img/certs/cert-aiignition.jpg" data-title="AI Ignition Training — Certificate of Participation (KUMPUL.ID)" data-pdf="assets/docs/sertifikat-ai-ignition.pdf" aria-label="View AI Ignition Training certificate">
+          <span class="cert-thumb">
+            <img src="assets/img/certs/cert-aiignition.jpg" alt="AI Ignition Training — Certificate of Participation" loading="lazy" width="1700" height="1203" />
+            <span class="cert-view" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8.5v5M8.5 11h5"/></svg> View certificate</span>
+          </span>
+          <span class="cert-info">
+            <span class="cert-issuer">AI Ignition · KUMPUL</span>
+            <span class="cert-name">AI Ignition Training</span>
+            <span class="cert-meta">Participation · Aug 2026</span>
+          </span>
+        </button>
+
+        <!-- estha — coming soon -->
+        <div class="cert-card cert-soon reveal" data-delay="1" aria-label="estha — coming soon">
+          <span class="cert-thumb">
+            <span class="cert-badge-soon">Coming Soon</span>
+            <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="estha — Create AI experiences">
+              <defs><linearGradient id="estha-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d2e50"/><stop offset="1" stop-color="#0a1c33"/></linearGradient></defs>
+              <rect width="400" height="250" fill="url(#estha-bg)"/>
+              <text x="200" y="132" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="84" font-weight="700" fill="#f4c430">estha</text>
+              <text x="200" y="172" text-anchor="middle" font-family="'Inter',sans-serif" font-size="17" font-weight="600" fill="#f4c430">Create AI experiences</text>
+              <text x="200" y="198" text-anchor="middle" font-family="'Inter',sans-serif" font-size="12.5" fill="#cdd8e6">No code. No prompt. Just ideas.</text>
+            </svg>
+          </span>
+          <span class="cert-info">
+            <span class="cert-issuer">estha</span>
+            <span class="cert-name">AI Experience Platform</span>
+            <span class="cert-meta">Coming soon — stay tuned</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="card-surface section" id="contact" style="margin-top:16px" aria-labelledby="contact-title">
+      <div class="contact-wrap">
+        <div class="contact-aside reveal">
+          <p class="section-label"><span class="dash"></span> 04 — Contact</p>
+          <h2 class="section-title" id="contact-title">Got a project? Let's talk.</h2>
+          <p class="contact-lead">Open to collaboration, freelance projects, or internship opportunities.</p>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:pandupro6789@gmail.com">pandupro6789@gmail.com</a></div>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/></svg><span>Indonesia · Remote / On‑site</span></div>
+          <div class="contact-line" style="border-bottom:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Usually replies within 24 hours</span></div>
+        </div>
+        <div class="reveal" data-delay="1">
+          <!-- CONTACT FORM — set data-endpoint to your Formspree URL to enable auto-send.
+               If empty, the send button opens the user's email app (mailto). -->
+          <form class="contact-form" id="contactForm" data-email="pandupro6789@gmail.com" data-endpoint="" novalidate>
+            <div class="field"><label for="cf-name">Name</label><input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Your name" required /><span class="error-msg" aria-live="polite"></span></div>
+            <div class="field"><label for="cf-email">Email</label><input type="email" id="cf-email" name="email" autocomplete="email" placeholder="you@example.com" required /><span class="error-msg" aria-live="polite"></span></div>
+            <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" placeholder="Tell me about your project or idea…" required></textarea><span class="error-msg" aria-live="polite"></span></div>
+            <button type="submit" class="btn btn-solid" style="width:100%">Send Message <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+            <p class="form-note">By sending, you agree your data is used only to reply to this message.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div><!-- /.shell -->
+
+  <!-- ===================== FOOTER (full-width) ===================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Lazuardi Pandu</div>
+          <p class="section-intro" style="margin-top:8px">Full Stack Developer — building clean, functional web apps.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.linkedin.com/in/lazuardipandu" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://dribbble.com/lazuardipandu" target="_blank" rel="noopener">Dribbble</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Lazuardi Pandu. All rights reserved.</span>
+        <button class="to-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== CASE STUDY MODAL ===================== -->
+  <div class="modal" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" aria-label="Close case study"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="modal-banner" data-slot="banner"></div>
+      <div class="modal-body">
+        <p class="modal-eyebrow" data-slot="eyebrow"></p>
+        <h2 class="modal-title" id="modalTitle" data-slot="title"></h2>
+        <div class="modal-facts">
+          <div class="modal-fact"><div class="k">Role</div><div class="v" data-slot="role"></div></div>
+          <div class="modal-fact"><div class="k">Year</div><div class="v" data-slot="year"></div></div>
+          <div class="modal-fact"><div class="k">Tools</div><div class="v" data-slot="tools"></div></div>
+        </div>
+        <div data-slot="sections"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CERTIFICATE LIGHTBOX (pop-up) ===================== -->
+  <div class="lightbox" id="certLightbox" role="dialog" aria-modal="true" aria-label="Certificate preview" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-inner" role="document">
+      <button class="lightbox-close" aria-label="Close preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <img class="lightbox-img" data-slot="img" src="" alt="" />
+      <p class="lightbox-cap" data-slot="cap"></p>
+      <div class="lightbox-actions"><a data-slot="pdf" href="#" target="_blank" rel="noopener">Open original PDF ↗</a></div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+  <!-- ===================== CASE STUDY DATA (easy to edit) ===================== -->
+  <script type="application/json" id="casesData">
+  {
+    "fintar": { "title": "Fintar — Personal Finance App", "category": "Mobile App", "role": "UI/UX Designer", "year": "2025", "tools": "Figma, Protopie", "sections": [
+      { "h": "Overview", "p": "A mobile app that helps young people track spending and save money in a simple, enjoyable way." },
+      { "h": "Problem", "p": "Many users struggle to see where their money goes. Existing finance apps feel complex and number-heavy." },
+      { "h": "Process", "p": "Quick research with 8 users, user flows, low-fi wireframes, then hi-fi UI and a clickable prototype for usability testing." },
+      { "h": "Solution", "p": "A compact dashboard with spending visuals, auto categories, and savings goals that motivate through progress bars." },
+      { "h": "Result", "p": "In usability tests, the logging task was completed 40% faster and feature comprehension improved." } ] },
+    "bloom": { "title": "Bloom — Fashion E‑commerce", "category": "Web Design", "role": "UI/UX Designer", "year": "2025", "tools": "Figma", "sections": [
+      { "h": "Overview", "p": "A redesign of a fashion e-commerce site to feel modern, fast, and easy at checkout." },
+      { "h": "Problem", "p": "A slow checkout and weak product presentation led to many abandoned carts." },
+      { "h": "Process", "p": "UX audit, competitor benchmarking, restructured information architecture, then UI and components." },
+      { "h": "Solution", "p": "A clean product grid, quick-view, and a 2-step checkout with a clear progress indicator." },
+      { "h": "Result", "p": "The prototype was validated with a mentor; the checkout flow was rated far more intuitive than the old one." } ] },
+    "nusa": { "title": "Nusa Coffee — Brand Identity", "category": "Branding", "role": "Visual / Brand Designer", "year": "2024", "tools": "Illustrator, Photoshop", "sections": [
+      { "h": "Overview", "p": "A visual identity for a local coffee shop: logo, color palette, and packaging application." },
+      { "h": "Problem", "p": "The brand lacked a consistent identity, making it hard to recognize on social media and packaging." },
+      { "h": "Process", "p": "Moodboard, logo exploration, typography selection, and a mini brand guideline." },
+      { "h": "Solution", "p": "A bold monogram logo, a warm monochrome color system, and easy-to-use content templates." },
+      { "h": "Result", "p": "The brand now looks more consistent and professional across every customer touchpoint." } ] },
+    "medika": { "title": "Medika — Doctor Booking App", "category": "Mobile App", "role": "UI/UX Designer", "year": "2025", "tools": "Figma", "sections": [
+      { "h": "Overview", "p": "An app to book doctor appointments and online consultations with a fast flow." },
+      { "h": "Problem", "p": "The conventional booking process was time-consuming and doctor schedules were hard to find." },
+      { "h": "Process", "p": "User journey mapping, wireframes, UI design, then testing the booking flow with several users." },
+      { "h": "Solution", "p": "Search doctors by specialty, a clear slot calendar, and one-tap booking confirmation." },
+      { "h": "Result", "p": "The booking flow can be completed quickly, with no confusion for new users." } ] },
+    "estate": { "title": "Estate+ — Property Dashboard", "category": "Web Design", "role": "UI Designer", "year": "2024", "tools": "Figma", "sections": [
+      { "h": "Overview", "p": "A dashboard for property agents to monitor listings, leads, and sales performance." },
+      { "h": "Problem", "p": "Data was scattered across many places, making it hard for agents to see the big picture quickly." },
+      { "h": "Process", "p": "Defined key metrics, built an information hierarchy, then designed the data components and charts." },
+      { "h": "Solution", "p": "KPI summary on top, trend charts, and a filterable listing table on a single screen." },
+      { "h": "Result", "p": "Key information is understandable at a glance, reducing daily data-checking time." } ] },
+    "lumen": { "title": "Lumen — SaaS Landing Page", "category": "Web Design", "role": "UI/UX Designer", "year": "2025", "tools": "Figma, Framer", "sections": [
+      { "h": "Overview", "p": "A landing page for a SaaS product that emphasizes message clarity and conversion." },
+      { "h": "Problem", "p": "The old landing page was too busy, so the product value didn't come across quickly." },
+      { "h": "Process", "p": "Structured the landing (hero, benefits, social proof, CTA), wrote concise copy, then designed the UI." },
+      { "h": "Solution", "p": "A bold hero, large typography, and a standout CTA with a clear visual hierarchy." },
+      { "h": "Result", "p": "The product message is grasped within the first 5 seconds when tested with several people." } ] }
+  }
+  </script>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
