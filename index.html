@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Apply theme as early as possible (default: DARK) + mark JS active -->
+  <!-- Editable content (managed via admin.html) -->
+  <script src="assets/js/content-data.js"></script>
+  <!-- Apply theme as early as possible + mark JS active -->
   <script>
     (function () {
+      var def = (window.SITE_CONTENT && window.SITE_CONTENT.theme) || "dark";
       try {
         var t = localStorage.getItem("theme");
-        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
-      } catch (e) { document.documentElement.setAttribute("data-theme", "dark"); }
+        document.documentElement.setAttribute("data-theme", (t === "light" || t === "dark") ? t : def);
+      } catch (e) { document.documentElement.setAttribute("data-theme", def); }
       document.documentElement.classList.add("js");
     })();
   </script>
@@ -67,7 +70,7 @@
       <div class="nav-inner">
         <a class="brand" href="#top" aria-label="Lazuardi Pandu — home">
           <span class="brand-dot" aria-hidden="true"></span>
-          Lazuardi Pandu
+          <span data-c="brand">Lazuardi Pandu</span>
         </a>
 
         <ul class="nav-menu" id="navMenu">
@@ -96,12 +99,12 @@
     <header class="card-surface section hero" id="top" style="margin-top:16px">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> Full Stack Developer</p>
+          <p class="hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> <span data-c="hero.role">Full Stack Developer</span></p>
           <h1 class="hero-name">
-            <span class="line fill">Lazuardi</span>
-            <span class="line outline">Pandu</span>
+            <span class="line fill" data-c="hero.name1">Lazuardi</span>
+            <span class="line outline" data-c="hero.name2">Pandu</span>
           </h1>
-          <p class="hero-desc">Hi! I'm a Full Stack Developer who builds clean, functional web applications — turning ideas into products that work from front-end to back-end.</p>
+          <p class="hero-desc" data-c="hero.desc">Hi! I'm a Full Stack Developer who builds clean, functional web applications — turning ideas into products that work from front-end to back-end.</p>
           <div class="hero-actions">
             <a class="btn btn-solid" href="#contact">
               Let's Collaborate
@@ -114,16 +117,16 @@
             <a class="btn btn-outline" href="#project">View Projects</a>
           </div>
           <ul class="socials">
-            <li><a class="social-pill" href="https://dribbble.com/lazuardipandu" target="_blank" rel="noopener" aria-label="Dribbble (opens in a new tab)">
+            <li><a class="social-pill" data-c-href="socials.dribbble" href="https://dribbble.com/lazuardipandu" target="_blank" rel="noopener" aria-label="Dribbble (opens in a new tab)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M5 8c4 3 9 4 14 3M8 3.5c4 4.5 6 9.5 6.5 16.5M20 13c-6-2-11 .5-13 5"/></svg>
               Dribbble</a></li>
-            <li><a class="social-pill" href="https://www.instagram.com/lazuardipandu" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
+            <li><a class="social-pill" data-c-href="socials.instagram" href="https://www.instagram.com/lazuardipandu" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
               Instagram</a></li>
-            <li><a class="social-pill" href="https://www.linkedin.com/in/lazuardipandu" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
+            <li><a class="social-pill" data-c-href="socials.linkedin" href="https://www.linkedin.com/in/lazuardipandu" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 10v7M7 7.2v.01M11 17v-4a2 2 0 0 1 4 0v4" stroke-linecap="round"/></svg>
               LinkedIn</a></li>
-            <li><a class="social-pill" href="https://www.behance.net/lazuardipandu" target="_blank" rel="noopener" aria-label="Behance (opens in a new tab)">
+            <li><a class="social-pill" data-c-href="socials.behance" href="https://www.behance.net/lazuardipandu" target="_blank" rel="noopener" aria-label="Behance (opens in a new tab)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 7h4.5a2.2 2.2 0 0 1 0 4.5H3zM3 11.5h5a2.4 2.4 0 0 1 0 5H3zM14.5 8.5H20M21 14.2a3 3 0 1 0-6 0 3 3 0 0 0 6 0zM15 14.2h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Behance</a></li>
           </ul>
@@ -151,12 +154,12 @@
         <h2 class="section-title" id="about-title">About me.</h2>
       </div>
       <div class="about-grid">
-        <p class="about-lead reveal">A developer focused on detail, clarity, and building things that actually work.</p>
+        <p class="about-lead reveal" data-c="about.lead">A developer focused on detail, clarity, and building things that actually work.</p>
         <div class="about-body reveal" data-delay="1">
-          <p>I'm Lazuardi Pandu Dwi Suratno, a Full Stack Developer and vocational high‑school student at SMK Telkom Purwokerto (Software &amp; Game Development / PPLG). I enjoy building web applications end to end — from crafting the interface to wiring up the back‑end.</p>
-          <p>I'm open to collaboration, freelance projects, and internship (PKL) opportunities.</p>
+          <p data-c="about.body.0">I'm Lazuardi Pandu Dwi Suratno, a Full Stack Developer and vocational high‑school student at SMK Telkom Purwokerto (Software &amp; Game Development / PPLG). I enjoy building web applications end to end — from crafting the interface to wiring up the back‑end.</p>
+          <p data-c="about.body.1">I'm open to collaboration, freelance projects, and internship (PKL) opportunities.</p>
           <h3 class="about-subtitle">Skills</h3>
-          <ul class="skill-chips">
+          <ul class="skill-chips" id="skillChips">
             <li class="skill-chip">HTML</li>
             <li class="skill-chip">CSS</li>
             <li class="skill-chip">JavaScript</li>
@@ -174,13 +177,13 @@
       <div class="about-more" id="aboutMore" aria-hidden="true">
         <div class="about-more-inner">
           <h3 class="about-subtitle">Education</h3>
-          <div class="edu-list">
+          <div class="edu-list" id="eduList">
             <div class="edu-item"><span class="edu-year">2024 — Present</span><div><p class="edu-school">SMK Telkom Purwokerto</p><p class="edu-note">Vocational High School — Software &amp; Game Development (PPLG)</p></div></div>
             <div class="edu-item"><span class="edu-year">2021 — 2024</span><div><p class="edu-school">SMP Telkom Purwokerto</p><p class="edu-note">Junior High School</p></div></div>
             <div class="edu-item"><span class="edu-year">2019 — 2021</span><div><p class="edu-school">SD Negeri 1 Purwokerto Lor</p><p class="edu-note">Elementary School</p></div></div>
             <div class="edu-item"><span class="edu-year">2015 — 2019</span><div><p class="edu-school">SD Negeri 1 Purwojati</p><p class="edu-note">Elementary School</p></div></div>
           </div>
-          <p class="about-soft">Beyond tech: strong critical thinking and a high drive to keep learning.</p>
+          <p class="about-soft" data-c="about.soft">Beyond tech: strong critical thinking and a high drive to keep learning.</p>
         </div>
       </div>
       <button class="btn btn-outline about-toggle reveal" id="aboutToggle" type="button" aria-expanded="false" aria-controls="aboutMore">
@@ -361,9 +364,9 @@
           <p class="section-label"><span class="dash"></span> 04 — Contact</p>
           <h2 class="section-title" id="contact-title">Got a project? Let's talk.</h2>
           <p class="contact-lead">Open to collaboration, freelance projects, or internship opportunities.</p>
-          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:pandupro6789@gmail.com">pandupro6789@gmail.com</a></div>
-          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/></svg><span>Indonesia · Remote / On‑site</span></div>
-          <div class="contact-line" style="border-bottom:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Usually replies within 24 hours</span></div>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a data-c-mail href="mailto:pandupro6789@gmail.com">pandupro6789@gmail.com</a></div>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/></svg><span data-c="contact.location">Indonesia · Remote / On‑site</span></div>
+          <div class="contact-line" style="border-bottom:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-c="contact.reply">Usually replies within 24 hours</span></div>
         </div>
         <div class="reveal" data-delay="1">
           <!-- CONTACT FORM — set data-endpoint to your Formspree URL to enable auto-send.
@@ -386,8 +389,8 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div>
-          <div class="footer-brand">Lazuardi Pandu</div>
-          <p class="section-intro" style="margin-top:8px">Full Stack Developer — building clean, functional web apps.</p>
+          <div class="footer-brand" data-c="brand">Lazuardi Pandu</div>
+          <p class="section-intro" style="margin-top:8px" data-c="footer.tagline">Full Stack Developer — building clean, functional web apps.</p>
         </div>
         <ul class="footer-links">
           <li><a href="#top">Home</a></li>

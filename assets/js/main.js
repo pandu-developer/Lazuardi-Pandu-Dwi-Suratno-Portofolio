@@ -9,6 +9,7 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.addEventListener("DOMContentLoaded", function () {
+    applyContent();
     setYear();
     initTheme();
     initMobileNav();
@@ -53,6 +54,100 @@
       try { localStorage.setItem("theme", next); } catch (e) {}
       label();
     });
+  }
+
+  /* ---- Terapkan konten dari content-data.js (+ preview draft dari admin) ---- */
+  function deepMerge(base, over) {
+    if (Array.isArray(over)) return over.slice();
+    if (over && typeof over === "object") {
+      var out = {};
+      var k;
+      for (k in base) out[k] = base[k];
+      for (k in over) {
+        out[k] = (base && typeof base[k] === "object" && !Array.isArray(base[k]) && over[k] && typeof over[k] === "object" && !Array.isArray(over[k]))
+          ? deepMerge(base[k], over[k]) : over[k];
+      }
+      return out;
+    }
+    return over;
+  }
+  function getContent() {
+    var base = window.SITE_CONTENT || {};
+    try {
+      var raw = localStorage.getItem("siteContentDraft");
+      if (raw) return deepMerge(base, JSON.parse(raw));
+    } catch (e) {}
+    return base;
+  }
+  function resolve(obj, path) {
+    return path.split(".").reduce(function (o, k) { return (o == null) ? undefined : o[k]; }, obj);
+  }
+  function applyContent() {
+    var c = getContent();
+    if (!c) return;
+    // Teks sederhana
+    document.querySelectorAll("[data-c]").forEach(function (el) {
+      var v = resolve(c, el.getAttribute("data-c"));
+      if (typeof v === "string") el.textContent = v;
+    });
+    // Link (href)
+    document.querySelectorAll("[data-c-href]").forEach(function (el) {
+      var v = resolve(c, el.getAttribute("data-c-href"));
+      if (typeof v === "string" && v) el.setAttribute("href", v);
+    });
+    // Email
+    var mail = document.querySelector("[data-c-mail]");
+    if (mail && c.contact && c.contact.email) {
+      mail.textContent = c.contact.email;
+      mail.setAttribute("href", "mailto:" + c.contact.email);
+    }
+    // Skills
+    if (c.about && Array.isArray(c.about.skills)) {
+      var sc = document.getElementById("skillChips");
+      if (sc) {
+        sc.innerHTML = "";
+        c.about.skills.forEach(function (s) {
+          var li = document.createElement("li");
+          li.className = "skill-chip";
+          li.textContent = s;
+          sc.appendChild(li);
+        });
+      }
+    }
+    // Education
+    if (c.about && Array.isArray(c.about.education)) {
+      var ed = document.getElementById("eduList");
+      if (ed) {
+        ed.innerHTML = "";
+        c.about.education.forEach(function (e) {
+          var item = document.createElement("div");
+          item.className = "edu-item";
+          var y = document.createElement("span");
+          y.className = "edu-year";
+          y.textContent = e.year || "";
+          var box = document.createElement("div");
+          var s = document.createElement("p");
+          s.className = "edu-school";
+          s.textContent = e.school || "";
+          var n = document.createElement("p");
+          n.className = "edu-note";
+          n.textContent = e.note || "";
+          box.appendChild(s); box.appendChild(n);
+          item.appendChild(y); item.appendChild(box);
+          ed.appendChild(item);
+        });
+      }
+    }
+    // Form kontak (email + endpoint)
+    var form = document.getElementById("contactForm");
+    if (form && c.contact) {
+      if (c.contact.email) form.setAttribute("data-email", c.contact.email);
+      form.setAttribute("data-endpoint", c.contact.formEndpoint || "");
+    }
+    // Meta title (opsional, ikut role)
+    if (c.brand && c.hero && c.hero.role) {
+      document.title = c.brand + " — " + c.hero.role;
+    }
   }
 
   /* ---- Tahun otomatis di footer ---- */

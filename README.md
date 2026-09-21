@@ -28,14 +28,36 @@ Pilih salah satu:
 
 ---
 
+## 🛠️ Dashboard Admin (edit konten TANPA VS Code)
+
+Buka **`admin.html`** (dobel-klik, atau `http://localhost:5173/admin.html`, atau `namadomain.com/admin.html` setelah online).
+
+1. Masukkan **passcode**. Default: `pandu2026` — **ganti** di `assets/js/admin.js` (baris `ADMIN_PASSCODE`).
+2. Edit teks lewat form → klik **Simpan** (perubahan tersimpan sebagai preview).
+3. Klik **Preview ↗** untuk melihat hasilnya di website.
+4. Agar perubahan **tampil online untuk semua orang**, klik **Export** → dapat file `content-data.js` → **ganti file lama** di `assets/js/content-data.js` pada hosting:
+   - **Netlify:** taruh file baru ke folder proyek (timpa yang lama), lalu drag folder lagi ke Netlify.
+   - **GitHub:** buka file `assets/js/content-data.js` di github.com → **Edit/Upload** → commit → website auto-update.
+5. **Reset** = kembalikan ke versi terpublish. **Import** = muat file `content-data.js` yang sudah ada.
+
+**Yang bisa diedit lewat dashboard:** nama brand, role, nama hero, deskripsi, link sosial media, About (bio, skills, pendidikan), kontak (email, lokasi, endpoint form), tagline footer, tema default.
+**Yang masih lewat file:** foto profil, proyek (studi kasus), sertifikat, gambar (lihat tabel di bawah).
+
+> ⚠️ **Keamanan:** passcode di admin.html hanya pengaman **dasar** (bisa dilihat orang yang paham teknis). Kalau tak mau orang lain buka, **jangan upload `admin.html` ke hosting** (pakai lokal saja), atau lindungi lewat fitur password hosting.
+
+---
+
 ## 📁 Struktur Folder
 
 ```
 Update-porto/
-├─ index.html          ← halaman utama (semua konten & teks ada di sini)
+├─ index.html          ← halaman utama (website)
+├─ admin.html          ← DASHBOARD ADMIN (edit konten tanpa VS Code)
 ├─ assets/
 │  ├─ css/style.css    ← styling & design token (warna, ukuran)
 │  ├─ js/main.js       ← interaksi (menu, filter, modal, form)
+│  ├─ js/content-data.js ← SEMUA teks yang bisa diedit (dibaca website)
+│  ├─ js/admin.js      ← logika dashboard admin
 │  ├─ img/
 │  │  ├─ profile.svg   ← FOTO PROFIL (ganti dengan fotomu)
 │  │  ├─ favicon.svg   ← ikon tab browser
@@ -52,7 +74,7 @@ Update-porto/
 
 ## ✏️ Cara Edit Konten
 
-Hampir semua yang perlu kamu ubah ada di **`index.html`**. Cari komentar `<!-- ... -->` sebagai penanda.
+**Cara termudah: pakai Dashboard Admin di atas.** Kalau mau edit manual lewat file, sebagian besar teks ada di `assets/js/content-data.js`; sisanya (foto, proyek, sertifikat) di `index.html` — cari komentar `<!-- ... -->` sebagai penanda.
 
 | Yang mau diubah | Lokasi |
 |---|---|
