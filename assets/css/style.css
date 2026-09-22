@@ -513,7 +513,7 @@ button { font-family: inherit; }
 .back-to-top svg { width: 20px; height: 20px; }
 
 /* ---------- Reveal on scroll (lebih halus) ---------- */
-.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); will-change: opacity, transform; }
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); will-change: opacity, transform; }
 .js .reveal.in-view { opacity: 1; transform: none; }
 .reveal[data-delay="1"] { transition-delay: 0.09s; }
 .reveal[data-delay="2"] { transition-delay: 0.18s; }
@@ -532,14 +532,14 @@ button { font-family: inherit; }
 
 @media (max-width: 760px) {
   .nav-menu, .nav-cta.desktop-only { display: none; }
-  .nav-toggle { display: inline-flex; }
+  .nav-toggle { display: inline-grid; }  /* grid + place-items = ikon benar-benar center */
   .nav-menu.mobile-open {
     display: flex; flex-direction: column; align-items: stretch;
     position: absolute; top: calc(100% + 10px); left: 0; right: 0;
     background: var(--paper); border: 1px solid var(--line-soft);
     border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 12px; gap: 2px;
   }
-  .nav-menu.mobile-open .nav-link { padding: 14px 16px; }
+  .nav-menu.mobile-open .nav-link { padding: 14px 16px; justify-content: center; text-align: center; }
   .nav-menu.mobile-open .nav-cta-mobile { display: block; margin-top: 6px; }
   .nav-inner { position: relative; }
   .work-grid, .service-grid, .cert-grid { grid-template-columns: 1fr; }

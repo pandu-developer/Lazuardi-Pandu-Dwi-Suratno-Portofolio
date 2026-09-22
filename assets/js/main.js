@@ -228,16 +228,14 @@
       items.forEach(function (el) { el.classList.add("in-view"); });
       return;
     }
+    // Animasi diulang setiap elemen masuk area pandang (bukan sekali saja).
     function sweep() {
       var vh = window.innerHeight;
-      var remaining = false;
       items.forEach(function (el) {
-        if (el.classList.contains("in-view")) return;
-        remaining = true;
-        // Tampilkan begitu bagian atas elemen mendekati area pandang.
-        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add("in-view");
+        var top = el.getBoundingClientRect().top;
+        if (top >= vh * 0.96) el.classList.remove("in-view");      // masih di bawah layar → siap dianimasikan lagi (di luar layar, mundurnya tak terlihat)
+        else if (top < vh * 0.88) el.classList.add("in-view");     // sudah cukup masuk → animasikan masuk
       });
-      return remaining;
     }
     var ticking = false;
     function onScroll() {
