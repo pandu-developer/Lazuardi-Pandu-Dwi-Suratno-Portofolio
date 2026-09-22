@@ -408,7 +408,7 @@ button { font-family: inherit; }
 .modal-section p { color: var(--ink-70); margin: 0; }
 
 /* ---------- Certificates ---------- */
-.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(16px, 2.2vw, 24px); }
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 24px); }
 .cert-card {
   text-align: left; border: 1px solid var(--line); background: var(--paper); padding: 0;
   border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; display: flex; flex-direction: column;
@@ -524,7 +524,7 @@ button { font-family: inherit; }
   .hero-grid { grid-template-columns: 1fr; gap: 34px; }
   .hero-photo { max-width: 340px; margin: 0 auto; }
   .about-grid { grid-template-columns: 1fr; gap: 22px; }
-  .service-grid, .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .service-grid, .testi-grid, .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-wrap { grid-template-columns: 1fr; }
   .timeline-item { grid-template-columns: 90px 1fr; }
   .timeline-tag { display: none; }
@@ -542,7 +542,7 @@ button { font-family: inherit; }
   .nav-menu.mobile-open .nav-link { padding: 14px 16px; }
   .nav-menu.mobile-open .nav-cta-mobile { display: block; margin-top: 6px; }
   .nav-inner { position: relative; }
-  .work-grid, .service-grid { grid-template-columns: 1fr; }
+  .work-grid, .service-grid, .cert-grid { grid-template-columns: 1fr; }
   .edu-item { grid-template-columns: 1fr; gap: 3px; }
 }
 
