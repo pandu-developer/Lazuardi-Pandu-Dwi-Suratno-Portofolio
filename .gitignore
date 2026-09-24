@@ -1,1 +1,13 @@
-/claude
+# === Claude Code (JANGAN di-push ke repo) ===
+.claude/
+
+# === Admin panel: LOKAL saja, jangan di-online-kan (biar passcode aman) ===
+# (Kalau kamu mau admin bisa dibuka online, hapus 2 baris ini.)
+admin.html
+assets/js/admin.js
+
+# === Sampah OS / editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+node_modules/

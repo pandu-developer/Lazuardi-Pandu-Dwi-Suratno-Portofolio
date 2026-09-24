@@ -40,8 +40,10 @@ Buka **`admin.html`** (dobel-klik, atau `http://localhost:5173/admin.html`, atau
    - **GitHub:** buka file `assets/js/content-data.js` di github.com → **Edit/Upload** → commit → website auto-update.
 5. **Reset** = kembalikan ke versi terpublish. **Import** = muat file `content-data.js` yang sudah ada.
 
-**Yang bisa diedit lewat dashboard:** nama brand, role, nama hero, deskripsi, link sosial media, About (bio, skills, pendidikan), kontak (email, lokasi, endpoint form), tagline footer, tema default.
-**Yang masih lewat file:** foto profil, proyek (studi kasus), sertifikat, gambar (lihat tabel di bawah).
+**Yang bisa diedit lewat dashboard:** nama brand, role, hero, deskripsi, sosial media, About (bio, skills, pendidikan), **Projects** (judul, kategori, tahun, gambar, studi kasus), **Certificates** (gambar, PDF, judul, coming-soon), kontak, tagline footer, tema default.
+**Yang masih lewat file:** foto profil hero, dan file gambar/PDF-nya sendiri (lihat catatan gambar).
+
+> 🖼️ **Gambar project & sertifikat:** dashboard menyimpan **path** gambar, bukan file-nya. Taruh file gambar di `assets/img/...` (dan PDF di `assets/docs/...`), lalu tulis path-nya di form (mis. `assets/img/projects/furniture.jpg`), atau pakai URL gambar online. Project **tanpa gambar → otomatis tampil placeholder gradient** dengan huruf awal judul. Kategori project dipakai untuk membuat tombol filter secara otomatis.
 
 > ⚠️ **Keamanan:** passcode di admin.html hanya pengaman **dasar** (bisa dilihat orang yang paham teknis). Kalau tak mau orang lain buka, **jangan upload `admin.html` ke hosting** (pakai lokal saja), atau lindungi lewat fitur password hosting.
 
@@ -87,23 +89,23 @@ Update-porto/
 | **About: bio** | Cari `id="about"` → ubah teks `about-lead` & `about-body`. |
 | **About: skills** | Cari `class="skill-chips"` → tambah/hapus `<li class="skill-chip">…</li>`. |
 | **About: pendidikan** | Cari `class="edu-list"` (di dalam blok "See more" `id="aboutMore"`) → ubah tahun & sekolah. |
-| **Project / studi kasus** | Judul & thumbnail ada di `class="work-grid"` (section `id="project"`). Isi studi kasus ada di bawah, di `<script id="casesData">`. |
-| **Sertifikat** | Cari `id="certificates"`. Tiap kartu punya `data-cert` (gambar untuk pop-up), `data-pdf` (PDF asli), dan `data-title`. Gambar ada di `assets/img/certs/`, PDF di `assets/docs/`. Kartu **estha** ditandai "Coming Soon" (tidak bisa diklik). |
+| **Project / studi kasus** | Paling mudah lewat **Dashboard → Projects**. Manual: array `projects` di `assets/js/content-data.js`. |
+| **Sertifikat** | Paling mudah lewat **Dashboard → Certificates**. Manual: array `certificates` di `assets/js/content-data.js` (kartu **estha** = `comingSoon: true`). |
 | **CV (download)** | File CV ada di `assets/docs/CV-Lazuardi-Pandu.pdf`. Tombol "Download CV" ada di **hero (Home)**. |
 | **Kontak & email** | Cari `id="contact"`. Email ada di `mailto:` dan atribut `data-email`. |
 | **Menu navbar** | Cari `class="nav-menu"` → menu Home / About / Project / Contact. |
 
 ---
 
-## 🏅 Menambah / Mengganti Sertifikat
+## 🏅 Menambah Sertifikat / Project (via Dashboard)
 
-1. Simpan gambar sertifikat (JPG/PNG, sisi terpanjang ±1600px) ke `assets/img/certs/`, dan (opsional) PDF aslinya ke `assets/docs/`.
-   - Punya sertifikat dalam bentuk PDF? Ubah ke gambar dulu (mis. screenshot, atau export dari PDF).
-2. Di `index.html` bagian `id="certificates"`, salin satu blok `<button class="cert-card" ...>`, lalu ubah:
-   - `data-cert="assets/img/certs/namafile.jpg"` (gambar untuk pop-up)
-   - `data-pdf="assets/docs/namafile.pdf"` (opsional; hapus atribut ini kalau tak ada PDF)
-   - `data-title="..."` dan teks di `cert-issuer` / `cert-name` / `cert-meta`.
-3. Kartu **estha** memakai class `cert-soon` (tidak bisa diklik, ada badge "Coming Soon"). Ganti/hapus sesuai kebutuhan.
+Paling mudah lewat **Dashboard** (`admin.html`) → bagian **Projects** atau **Certificates** (tombol "+ Tambah…").
+
+1. Siapkan gambar (JPG/PNG, sisi terpanjang ±1600px) di `assets/img/certs/` atau `assets/img/projects/`, dan (opsional) PDF di `assets/docs/`.
+   - Sertifikat berupa PDF? Ubah ke gambar dulu (screenshot / export).
+2. Di form, isi **Gambar (path)** mis. `assets/img/certs/namafile.jpg`, dan **PDF (path)** bila ada. Project boleh dikosongkan gambarnya → placeholder otomatis.
+3. Untuk kartu "belum jadi" (seperti estha), centang **Coming Soon**.
+4. Klik **Simpan** → **Preview** → **Export** → ganti `assets/js/content-data.js` di hosting.
 
 ## 📬 Mengaktifkan Form Kontak
 
