@@ -1,0 +1,36 @@
+# ============================================================
+#  Netlify config — Lazuardi Pandu Portfolio
+#  Situs statis (HTML/CSS/JS), TANPA build step.
+#  Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+# ============================================================
+
+[build]
+  publish = "."       # semua file (index.html, dll) ada di root repo
+  # Tidak ada "command" = tidak ada proses build (situs statis murni)
+
+# --- Header keamanan dasar untuk semua halaman ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# --- File data konten: selalu ambil versi terbaru ---
+#     (biar hasil Export dari admin langsung tampil, tidak kena cache lama)
+[[headers]]
+  for = "/assets/js/content-data.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# --- Gambar & PDF boleh di-cache 1 hari (jarang berubah) ---
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/assets/docs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
