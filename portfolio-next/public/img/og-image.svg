@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Lazuardi Pandu — UI/UX Designer">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="24" y="24" width="1152" height="582" rx="32" fill="#ffffff" stroke="#e6e6e6"/>
+  <!-- grid halus -->
+  <g stroke="#0a0a0a" stroke-opacity="0.05">
+    <line x1="24" y1="210" x2="1176" y2="210"/>
+    <line x1="24" y1="420" x2="1176" y2="420"/>
+  </g>
+  <g font-family="'Space Grotesk','Segoe UI',sans-serif" font-weight="700" letter-spacing="-4">
+    <text x="80" y="300" font-size="150" fill="#0a0a0a">LAZUARDI</text>
+    <text x="80" y="450" font-size="150" fill="none" stroke="#0a0a0a" stroke-width="2.5">PANDU</text>
+  </g>
+  <g font-family="'Inter','Segoe UI',sans-serif">
+    <circle cx="92" cy="540" r="7" fill="#22c55e"/>
+    <text x="112" y="546" font-size="26" font-weight="600" fill="#0a0a0a">Full Stack Developer</text>
+    <text x="420" y="546" font-size="24" fill="#6b6b6b">· Available for new projects</text>
+  </g>
+</svg>
