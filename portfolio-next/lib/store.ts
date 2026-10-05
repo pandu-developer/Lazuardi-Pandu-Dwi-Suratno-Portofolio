@@ -7,7 +7,17 @@ import path from "path";
 import { DEFAULT_CONTENT, SiteContent } from "./content";
 
 const FILE = path.join(process.cwd(), "data", "content.json");
-const usePg = !!process.env.DATABASE_URL;
+
+// Accept whichever name the host/integration provides (Vercel Postgres, Neon,
+// and Supabase differ): DATABASE_URL, POSTGRES_URL, or the Prisma/non-pooling
+// variants. Whatever you paste manually, put it in DATABASE_URL.
+const CONN =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_PRISMA_URL ||
+  process.env.POSTGRES_URL_NON_POOLING ||
+  "";
+const usePg = !!CONN;
 
 /** Deep-merge stored content over defaults so new fields never break. */
 function merge(base: any, over: any): any {
@@ -27,7 +37,7 @@ async function pool() {
   if (!_pool) {
     const { Pool } = await import("pg");
     _pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: CONN,
       ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
     });
     await _pool.query("CREATE TABLE IF NOT EXISTS site_content (id int PRIMARY KEY, data jsonb NOT NULL)");
