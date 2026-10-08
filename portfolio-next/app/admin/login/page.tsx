@@ -12,17 +12,23 @@ export default function Login() {
     e.preventDefault();
     setErr("");
     setLoading(true);
-    const r = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: pw }),
-    });
-    setLoading(false);
-    if (r.ok) {
-      router.push("/admin");
-      router.refresh();
-    } else {
-      setErr("Passcode salah.");
+    try {
+      const r = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: pw }),
+      });
+      if (r.ok) {
+        router.push("/admin");
+        router.refresh();
+        return;
+      }
+      const j = await r.json().catch(() => null);
+      setErr(j?.error || "Passcode salah.");
+    } catch {
+      setErr("Tidak bisa terhubung ke server.");
+    } finally {
+      setLoading(false);
     }
   }
 

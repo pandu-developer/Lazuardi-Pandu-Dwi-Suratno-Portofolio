@@ -18,7 +18,7 @@ export default function AdminDashboard({ initial }: { initial: SiteContent }) {
   const [toast, setToast] = useState<{ msg: string; err?: boolean } | null>(null);
   const router = useRouter();
 
-  function showToast(msg: string, err = false) { setToast({ msg, err }); setTimeout(() => setToast(null), 2600); }
+  function showToast(msg: string, err = false) { setToast({ msg, err }); setTimeout(() => setToast(null), err ? 6000 : 2600); }
 
   function setPath(path: string, value: any) {
     setData((prev) => {
@@ -54,7 +54,7 @@ export default function AdminDashboard({ initial }: { initial: SiteContent }) {
     try {
       const r = await fetch("/api/content", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(clean) });
       if (r.ok) { showToast("Tersimpan & langsung tayang ✓"); router.refresh(); }
-      else { showToast("Gagal menyimpan (sesi habis?).", true); }
+      else { const j = await r.json().catch(() => null); showToast(j?.error || "Gagal menyimpan.", true); }
     } catch { showToast("Gagal menyimpan.", true); }
     setSaving(false);
   }

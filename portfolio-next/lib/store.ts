@@ -32,15 +32,23 @@ function merge(base: any, over: any): any {
 }
 
 /* ---------------- Postgres adapter (production) ---------------- */
-let _pool: any = null;
-async function pool() {
+let _pool: Promise<any> | null = null;
+function pool() {
+  // Share one init across concurrent requests; forget it on failure so the
+  // next request retries (instead of keeping a pool whose table was never made).
   if (!_pool) {
-    const { Pool } = await import("pg");
-    _pool = new Pool({
-      connectionString: CONN,
-      ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
+    _pool = (async () => {
+      const { Pool } = await import("pg");
+      const p = new Pool({
+        connectionString: CONN,
+        ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
+      });
+      await p.query("CREATE TABLE IF NOT EXISTS site_content (id int PRIMARY KEY, data jsonb NOT NULL)");
+      return p;
+    })().catch((e) => {
+      _pool = null;
+      throw e;
     });
-    await _pool.query("CREATE TABLE IF NOT EXISTS site_content (id int PRIMARY KEY, data jsonb NOT NULL)");
   }
   return _pool;
 }
@@ -70,6 +78,11 @@ async function fileGet(): Promise<SiteContent> {
 async function fileSave(data: SiteContent) {
   await fs.mkdir(path.dirname(FILE), { recursive: true });
   await fs.writeFile(FILE, JSON.stringify(data, null, 2), "utf8");
+}
+
+/** True when content lives in Postgres (a DATABASE_URL-style env var is set). */
+export function usingDatabase(): boolean {
+  return usePg;
 }
 
 export async function getContent(): Promise<SiteContent> {
